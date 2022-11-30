@@ -1,0 +1,24 @@
+{"data":
+    [
+        {
+            "student": [
+                {"key": ["email"]},
+                {"attribute": ["gpa"]},
+                {"multivalued": ["phone"]},
+                {"composite": [
+                    {"name": ["first", "last"]}
+                ]}
+            ]
+        },
+        {
+            "instructor": [
+                {"key": ["email"]},
+                {"attribute": ["phd"]},
+                {"multivalued": ["phone"]},
+                {"composite": [
+                    {"name": ["first", "last"]}
+                ]}
+            ]
+        }
+    ]
+}
