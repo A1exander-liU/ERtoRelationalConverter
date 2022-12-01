@@ -37,12 +37,11 @@ def decompose_composite(data: dict):
 def main():
     with open("data.json", "r") as er_model:
         er_model = json.load(er_model)
-        for entity in er_model["data"]:
-            pretty_print(entity)
 
     for entity in er_model["data"]:
         primary_key = pick_primary(entity)
         decompose_composite(entity)
+        pretty_print(entity)
 
 
 if __name__ == "__main__":
