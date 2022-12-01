@@ -1,18 +1,13 @@
 import json
 
 
-def convert(file):
-    er_model = json.load(file)
-    keys = er_model["key"]
-    attributes = er_model["attributes"]
-    multi_valued = er_model["multivalued"]
-    composite = er_model["composite"]
-    return
+def pick_primary(data: dict) -> str:
+    return data["key"]
 
 
 def main():
-    file = open("sample.json")
-    convert(file)
+    with open("data.json", "r") as er_model:
+        er_model = json.load(er_model)
 
 
 if __name__ == "__main__":
