@@ -2,6 +2,12 @@ import json
 end = '\033[0m'
 underline = '\033[4m'
 
+"""
+Bonus Project - COMP 2714
+
+Toco Tachibana (A01279235)
+"""
+
 
 def print_references(er_model: dict):
     """
@@ -108,6 +114,12 @@ def main():
     with open("data.json", "r") as er_model:
         er_model = json.load(er_model)
 
+    print("String representation of ER model...")
+    for entity in er_model["data"]:
+        print(entity)
+    print()
+
+    print("Convert conceptual design to relational model...")
     multivalued = []
 
     for entity in er_model["data"]:
