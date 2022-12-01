@@ -122,7 +122,7 @@ def main():
 
     for relation in er_model['relation']:
         pretty_print(create_new_relation(er_model['data'], relation))
-
+    print()
     print_references(er_model)
 
 
