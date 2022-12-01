@@ -59,14 +59,27 @@ def create_new_relation(data: dict, relation: dict) -> dict:
     return new_entity
 
 
+def extract_multivalued_relation(data: dict, resource: list):
+    for attribute in data["multivalued"]:
+        resource.append({"entity": data["entity"].title() + attribute.title(),
+                         "key": [data["key"][0], attribute],
+                         "attribute": []})
+
+
 def main():
     with open("data2.json", "r") as er_model:
         er_model = json.load(er_model)
 
+    multivalued = []
+
     for entity in er_model["data"]:
         pick_primary(data=entity)
         decompose_composite(data=entity)
-        # extract_multivalued_relation(data=entity, resource=er_model)
+        extract_multivalued_relation(data=entity, resource=multivalued)
+
+    er_model["data"].extend(multivalued)
+
+    for entity in er_model["data"]:
         pretty_print(entity)
 
     for relation in er_model['relation']:
