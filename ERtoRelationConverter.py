@@ -4,18 +4,18 @@ underline = '\033[4m'
 
 
 def pretty_print(entity):
-    print(entity["entity"].capitalize(), end="")
+    print(entity['entity'], end="")
     print("[", end="")
     i = 0
-    for key in entity["key"]:
-        if i != len(entity["key"]) - 1:
+    for key in entity['key']:
+        if i != len(entity['key']) - 1:
             print(f"{underline}{key}, {end}", end="")
         else:
             print(f"{underline}{key}{end}, ", end="")
         i += 1
     i = 0
-    for attribute in entity["attribute"]:
-        if i != len(entity["attribute"]) - 1:
+    for attribute in entity['attribute']:
+        if i != len(entity['attribute']) - 1:
             print(f"{attribute}, ", end="")
         else:
             print(f"{attribute}", end="")
@@ -33,6 +33,7 @@ def decompose_composite(data: dict):
             for attribute in attributes:
                 data["attribute"].append(attribute)
 
+
 def main():
     with open("data.json", "r") as er_model:
         er_model = json.load(er_model)
@@ -40,7 +41,7 @@ def main():
     for entity in er_model["data"]:
         pick_primary(data=entity)
         decompose_composite(data=entity)
-        extract_multivalued_relation(data=entity, resource=er_model)
+        # extract_multivalued_relation(data=entity, resource=er_model)
         pretty_print(entity)
 
 
