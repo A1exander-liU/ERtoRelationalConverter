@@ -1,0 +1,28 @@
+{"data":
+    [
+        {
+            "entity": "employee",
+            "key": ["id", "email"],
+            "attribute": ["salary", "role"],
+            "multivalued": ["phd"],
+            "composite": [
+                {"name": ["first", "last"]},
+                {"address":  ["number", "street"]}
+            ]
+         },
+         {
+            "entity": "instructor",
+            "key": ["email"],
+            "attribute": ["gpa"],
+            "multivalued": ["phone"],
+            "composite": [
+                {"name": ["first", "last"]}
+            ]
+         }
+    ],
+"relation":
+    [
+        {"name": "trains",
+         "data": ["instructor", "employee"]}
+    ]
+}
