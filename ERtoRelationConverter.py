@@ -3,7 +3,7 @@ end = '\033[0m'
 underline = '\033[4m'
 
 
-def print_references(er_model: dict) -> None:
+def print_references(er_model: dict):
     """
     Print foreign key references.
     :param er_model: a dict
@@ -26,7 +26,7 @@ def print_references(er_model: dict) -> None:
             print(reference)
 
 
-def pretty_print(entity: dict) -> None:
+def pretty_print(entity: dict):
     """
     Prints the given relational model that is represented as a dict
     :param entity: the relational model to print out as a relational schema
@@ -48,11 +48,26 @@ def pretty_print(entity: dict) -> None:
     print("]")
 
 
-def pick_primary(data: dict) -> None:
+def pick_primary(data: dict):
+    """
+    Pick the primary key from the list of candidate keys.
+
+    :param data: ER model as a dictionary
+    :precondition: data is a dictionary containing an element with "key" as a key and a list as a value
+    :postcondition: create a new element with the key "pk" to the passed dictionary
+    """
     data['pk'] = [data['key'][0]]
 
 
-def decompose_composite(data: dict) -> None:
+def decompose_composite(data: dict):
+    """
+    Decompose composite attributes into atomic attributes.
+
+    :param data: ER model as a dictionary
+    :precondition: data is a dictionary containing elements with "composite" and "attribute" as keys
+    :postcondition: retrieve values associated with the key "composite"
+                    and append them to the list associated with the key "attributes"
+    """
     for _ in data['composite']:
         for attributes in _.values():
             for attribute in attributes:
@@ -90,7 +105,7 @@ def extract_multivalued_relation(data: dict, resource: list):
 
 
 def main():
-    with open("data2.json", "r") as er_model:
+    with open("data.json", "r") as er_model:
         er_model = json.load(er_model)
 
     multivalued = []
