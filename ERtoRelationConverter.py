@@ -24,13 +24,14 @@ def pretty_print(entity):
 
 
 def pick_primary(data: dict) -> str:
-    return data["key"]
+    return data["key"][0]
 
 
 def decompose_composite(data: dict):
     for _ in data["composite"]:
-        for attribute in _.items:
-            data["attribute"].push(attribute)
+        for attributes in _.values():
+            for attribute in attributes:
+                data["attribute"].append(attribute)
 
 
 def main():
@@ -38,6 +39,10 @@ def main():
         er_model = json.load(er_model)
         for entity in er_model["data"]:
             pretty_print(entity)
+
+    for entity in er_model["data"]:
+        primary_key = pick_primary(entity)
+        decompose_composite(entity)
 
 
 if __name__ == "__main__":

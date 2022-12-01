@@ -18,5 +18,10 @@
                 {"name": ["first", "last"]}
             ]
          }
+    ],
+"relation":
+    [
+        {"name": "teaches",
+         "data": ["instructor", "student"]}
     ]
 }
