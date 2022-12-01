@@ -21,6 +21,7 @@
     ],
 "relation":
     [
-        {"teaches": ["instructor", "student"]}
+        {"name": "teaches",
+         "data": ["instructor", "student"]}
     ]
 }
