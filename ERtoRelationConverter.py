@@ -31,15 +31,12 @@ def decompose_composite(data: dict):
 
 def create_new_relation(data: dict, relation: dict) -> dict:
     list_of_participating_entities = [relation['data'][0], relation['data'][1]]
-    first_entity = relation['data'][0].title()
-    relationship_name = relation['name'].title()
-    second_entity = relation['data'][1].title()
-    new_entity_name = first_entity + relationship_name + second_entity
+    new_entity_name = relation['data'][0].title() + relation['name'].title() + relation['data'][1].title()
     list_of_pk = []
 
     for entity in data:
         if entity['entity'] in list_of_participating_entities:
-            list_of_pk.append(f"{entity['entity'].title()}{entity['pk'][0].title()}")
+            list_of_pk.append(f"{entity['entity']}{entity['pk'][0].title()}")
 
     new_entity = {'entity': new_entity_name, 'key': list_of_pk, 'attribute': [], 'multivalued': [], 'composite': []}
 
