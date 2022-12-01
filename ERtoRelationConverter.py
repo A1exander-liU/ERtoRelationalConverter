@@ -85,10 +85,11 @@ def decompose_composite(data: dict):
 def create_new_relation(data: dict, relation: dict) -> dict:
     """
     Creates a new relational model represented in json and appends it to the data.
+
     :param data: all the entity types in the conceptual model represented in json
     :param relation: all the relationships in the conceptual model represented in json
     :precondition: data is a dict that holds all the entity types, relation is a dict that represents the relationship
-    to create a relational schema from
+                   to create a relational schema from
     :postcondition: adds a correct relational schema based on the relationship
     :return: a dict that is the relationship converted in a relational schema represented in json
     """
@@ -106,6 +107,13 @@ def create_new_relation(data: dict, relation: dict) -> dict:
 
 
 def extract_multivalued_relation(data: dict, resource: list):
+    """
+    Create new relations consisting of multivalued attributes with its entities.
+
+    :param data: ER model as a dictionary
+    :param resource: a temporary storage as a list
+    :precondition: data is a dictionary containing an element with "multivalued" as a key
+    """
     for attribute in data["multivalued"]:
         resource.append({"entity": data["entity"].title() + attribute.title(),
                          "key": [data["key"][0], attribute],
@@ -113,7 +121,7 @@ def extract_multivalued_relation(data: dict, resource: list):
 
 
 def main():
-    with open("data.json", "r") as er_model:
+    with open("data2.json", "r") as er_model:
         er_model = json.load(er_model)
 
     print("String representation of ER model...")
