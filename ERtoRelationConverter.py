@@ -3,7 +3,14 @@ end = '\033[0m'
 underline = '\033[4m'
 
 
-def print_references(er_model: dict):
+def print_references(er_model: dict) -> None:
+    """
+    Print foreign key references.
+    :param er_model: a dict
+    :precondition: er model contains all the keys necessary
+    :postcondition: prints all the foreign key references based on the er model
+    :return: nothing
+    """
     table_name = ""
     table_attributes = []
     print("References: ")
@@ -19,7 +26,14 @@ def print_references(er_model: dict):
             print(reference)
 
 
-def pretty_print(entity):
+def pretty_print(entity: dict) -> None:
+    """
+    Prints the given relational model that is represented as a dict
+    :param entity: the relational model to print out as a relational schema
+    :precondition: the entity must be a valid relational model represented as a dict
+    :postcondition: the formatted print will look like this: EntityName[underlined pk's, attributes]
+    :return: nothing
+    """
     print(entity['entity'][0].capitalize() + entity['entity'][1:], end="")
     print("[", end="")
     i = 0
@@ -34,11 +48,11 @@ def pretty_print(entity):
     print("]")
 
 
-def pick_primary(data: dict):
+def pick_primary(data: dict) -> None:
     data['pk'] = [data['key'][0]]
 
 
-def decompose_composite(data: dict):
+def decompose_composite(data: dict) -> None:
     for _ in data['composite']:
         for attributes in _.values():
             for attribute in attributes:
@@ -46,6 +60,15 @@ def decompose_composite(data: dict):
 
 
 def create_new_relation(data: dict, relation: dict) -> dict:
+    """
+    Creates a new relational model represented in json and appends it to the data.
+    :param data: all the entity types in the conceptual model represented in json
+    :param relation: all the relationships in the conceptual model represented in json
+    :precondition: data is a dict that holds all the entity types, relation is a dict that represents the relationship
+    to create a relational schema from
+    :postcondition: adds a correct relational schema based on the relationship
+    :return: a dict that is the relationship converted in a relational schema represented in json
+    """
     list_of_participating_entities = [relation['data'][0], relation['data'][1]]
     new_entity_name = relation['data'][0].title() + relation['name'].title() + relation['data'][1].title()
     list_of_pk = []
