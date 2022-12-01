@@ -3,6 +3,22 @@ end = '\033[0m'
 underline = '\033[4m'
 
 
+def print_references(er_model: dict):
+    table_name = ""
+    table_attributes = []
+    print("References: ")
+    for relation in er_model["relation"]:
+        table_name = relation.get("name")
+        table_attributes = relation.get("data")
+
+    for entity in er_model["data"]:
+        if entity.get("entity") in table_attributes:
+            table = table_attributes[0].title() + table_name.title() + table_attributes[1].title()
+            foreign_key = entity.get("entity") + entity.get("key")[0].title()
+            reference = f"\t {table}.{foreign_key} references {entity.get('entity').title()}.{entity.get('key')[0]}"
+            print(reference)
+
+
 def pretty_print(entity):
     print(entity['entity'][0].capitalize() + entity['entity'][1:], end="")
     print("[", end="")
@@ -44,7 +60,7 @@ def create_new_relation(data: dict, relation: dict) -> dict:
 
 
 def main():
-    with open("data.json", "r") as er_model:
+    with open("data2.json", "r") as er_model:
         er_model = json.load(er_model)
 
     for entity in er_model["data"]:
@@ -55,6 +71,8 @@ def main():
 
     for relation in er_model['relation']:
         pretty_print(create_new_relation(er_model['data'], relation))
+
+    print_references(er_model)
 
 
 if __name__ == "__main__":
