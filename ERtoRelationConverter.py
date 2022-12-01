@@ -4,7 +4,7 @@ underline = '\033[4m'
 
 
 def pretty_print(entity):
-    print(entity["entity"], end="")
+    print(entity["entity"][0].capitalize() + entity['entity'][1:], end="")
     print("[", end="")
     i = 0
     for key in entity["key"]:
