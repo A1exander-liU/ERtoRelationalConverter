@@ -8,6 +8,7 @@ Bonus Project - COMP 2714
 Toco Tachibana (A01279235)
 Alexander Liu (A01309846)
 Nathan Ng (A01293130)
+Joushua Dela Cruz (A01308022)
 """
 
 
