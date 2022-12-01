@@ -18,5 +18,9 @@
                 {"name": ["first", "last"]}
             ]
          }
+    ],
+"relation":
+    [
+        {"teaches": ["instructor", "student"]}
     ]
 }
